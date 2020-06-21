@@ -1,6 +1,8 @@
 package jpabook.jpashop.domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Member {
@@ -13,6 +15,10 @@ public class Member {
     private String city;
     private String street;
     private String zipcode;
+
+    // 관례상 new ArrayList<>() 를 해준다. nullPointer exception 피함
+    @OneToMany(mappedBy = "member")
+    private List<Order> orders = new ArrayList<>();
 
     public Long getId() {
         return id;
